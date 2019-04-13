@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "async-lock": "^1.2.0",
+    "muicss": "^0.9.41",
     "react": "^16.8.4",
+    "react-awesome-button": "^6.1.0",
     "react-dom": "^16.8.4",
     "react-flip-move": "^3.0.3",
     "react-scripts": "2.1.8",
@@ -15,9 +17,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "set PORT=3001 && react-scripts start",
-    "server": "nodemon ../server/app.js",
+    "server": "nodemon ../ToDoAPI/app.js",
     "database": "java -D\"java.library.path=../dynamodb/DynamoDBLocal_lib\" -jar ../dynamodb/DynamoDBLocal.jar -sharedDb",
-    "create-table": "aws dynamodb create-table --cli-input-json file://E:\\Learning\\Todo\\server\\config\\tables\\TODO_Table.json --endpoint-url http://localhost:8000",
+    "create-table": "aws dynamodb create-table --cli-input-json file://D:\\GIT\\ToDoProject\\ToDoAPI\\config\\tables\\TODO_Table.json --endpoint-url http://localhost:8000",
     "delete-table": "aws dynamodb delete-table --table-name ToDos",
     "dev": "concurrently \"npm run database\" \"npm run server\" \"npm run client\" --kill-others"
   },
