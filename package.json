@@ -1,0 +1,34 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "async-lock": "^1.2.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-flip-move": "^3.0.3",
+    "react-scripts": "2.1.8",
+    "styled-components": "^4.2.0"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "client": "set PORT=3001 && react-scripts start",
+    "server": "nodemon ../server/app.js",
+    "database": "java -D\"java.library.path=../dynamodb/DynamoDBLocal_lib\" -jar ../dynamodb/DynamoDBLocal.jar -sharedDb",
+    "create-table": "aws dynamodb create-table --cli-input-json file://E:\\Learning\\Todo\\server\\config\\tables\\TODO_Table.json --endpoint-url http://localhost:8000",
+    "delete-table": "aws dynamodb delete-table --table-name ToDos",
+    "dev": "concurrently \"npm run database\" \"npm run server\" \"npm run client\" --kill-others"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:3000"
+}
