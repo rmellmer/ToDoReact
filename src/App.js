@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import 'muicss/dist/css/mui.css';
 import './App.css'
 import styled from 'styled-components';
 import FlipMove from 'react-flip-move';
@@ -111,7 +110,7 @@ class ToDo extends Component {
     return (
       <StyledItem onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <h1>{this.props.message}</h1>
-        <RemoveButton onClick={() => this.props.delete(this.props.todoId)} className={this.state.linkClasses}>Remove</RemoveButton>
+        <RemoveButton onClick={() => this.props.delete(this.props.todoID, this.props.timestamp)} className={this.state.linkClasses}>Remove</RemoveButton>
       </StyledItem>
     );
   }
@@ -191,20 +190,20 @@ class ToDoList extends Component {
       );
   }
 
-  deleteToDo = (key) => {
+  deleteToDo = (todoID, timestamp) => {
     this.setState({
       updating: true
-    });
+    });    
 
     var filtered = this.state.todos.filter(function(item) {
-      return (item.todoId !== key);
+      return (item.todoID !== todoID);
     });
    
     this.setState({
       todos: filtered
     });
 
-    fetch('/api/todo?id=' + key, {
+    fetch('/api/todo?todoID=' + todoID + '&timestamp=' + timestamp, {
       method: 'DELETE'
     }).then((res) => {
       this.setState({
@@ -225,7 +224,7 @@ class ToDoList extends Component {
         <div style={{position: 'relative'}}>
           <FlipMove duration={250} easing="ease-out">
             {this.state.todos.map(todo => (
-              <ToDo key={todo.todoId} todoId={todo.todoId} message={todo.message} delete={this.deleteToDo}/>
+              <ToDo key={todo.todoID} todoID={todo.todoID} timestamp={todo.timestamp} message={todo.message} delete={this.deleteToDo}/>
             ))}
             <form onSubmit={this.handleSubmit} style={{ textAlign: 'center'}}>
               <input type="text" id="input" class="Input-text" placeholder="e.g. Eat a Taco" value={this.state.message} onChange={this.handleChange}/>

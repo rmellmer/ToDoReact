@@ -17,10 +17,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "set PORT=3001 && react-scripts start",
-    "server": "nodemon ../ToDoAPI/app.js",
+    "server": "nodemon --watch ../ToDoAPI ../ToDoAPI/app.js",
     "database": "java -D\"java.library.path=../dynamodb/DynamoDBLocal_lib\" -jar ../dynamodb/DynamoDBLocal.jar -sharedDb",
     "create-table": "aws dynamodb create-table --cli-input-json file://D:\\GIT\\ToDoProject\\ToDoAPI\\config\\tables\\TODO_Table.json --endpoint-url http://localhost:8000",
-    "delete-table": "aws dynamodb delete-table --table-name ToDos",
+    "delete-table": "aws dynamodb delete-table --table-name ToDos --endpoint-url http://localhost:8000",
     "dev": "concurrently \"npm run database\" \"npm run server\" \"npm run client\" --kill-others"
   },
   "eslintConfig": {
